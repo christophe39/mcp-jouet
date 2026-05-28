@@ -2,7 +2,10 @@ FROM python:3.13-slim
 
 WORKDIR /app
 
-# Install dependencies
+# Install curl for Coolify healthcheck
+RUN apt-get update && apt-get install -y --no-install-recommends curl && rm -rf /var/lib/apt/lists/*
+
+# Install Python dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
